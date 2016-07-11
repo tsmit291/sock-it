@@ -63,6 +63,15 @@ module.exports = function (socket) {
     name: name
   });
 
+  // broadcast a user's game selection to other users
+  socket.on('send:Rock', function (data) {
+    console.log('data submitted this is a rock homie', data);
+    socket.broadcast.emit('send:Rock', {
+      user: name,
+      text: data.message
+    });
+  });
+
   // broadcast a user's message to other users
   socket.on('send:message', function (data) {
     socket.broadcast.emit('send:message', {
@@ -78,7 +87,7 @@ module.exports = function (socket) {
       userNames.free(oldName);
 
       name = data.name;
-      
+
       socket.broadcast.emit('change:name', {
         oldName: oldName,
         newName: name

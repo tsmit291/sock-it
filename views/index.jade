@@ -16,7 +16,7 @@ block body
 
     .clr
       form(ng-submit='sendMessage()')
-        | Message: 
+        | Message:
         input(size='60', ng-model='message')
         input(type='submit', value='Send')
 
@@ -26,6 +26,16 @@ block body
       form(ng-submit='changeName()')
         input(ng-model='newName')
         input(type='submit', value='Change Name')
+
+    .col
+      h3 Make a choice homie
+        br
+        button(ng-model='rockButton' ng-click='sendRock()' ng-value='Rock') Rock
+        br
+        button(ng-model='paperButton' ng-click='sendPaper()') Paper
+        br
+        button(ng-model='scissorsButton' ng-click='sendScissors()') Scissors
+
 
   script(src='js/lib/angular/angular.js')
   script(src='/socket.io/socket.io.js')
